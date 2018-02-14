@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="R,统计," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.1 初始步骤123library(ISwR)#随机抽取1000个符合正态分布的随机数plot(rnorm(1000)) 1.1.3 向量运算123456789101112131415161718#构建向量weight &amp;lt;- c(60,72,57,90,95,72)weightheight &amp;lt;- c(1.75,1.80,1.65,1.90,1.74,1.91)#计算BMIbmi &amp;l">
+<meta name="keywords" content="R,统计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="R语言统计入门-第一章">
+<meta property="og:url" content="http://yoursite.com/2018/02/14/R语言统计入门-第一章/index.html">
+<meta property="og:site_name" content="Bionew">
+<meta property="og:description" content="1.1 初始步骤123library(ISwR)#随机抽取1000个符合正态分布的随机数plot(rnorm(1000)) 1.1.3 向量运算123456789101112131415161718#构建向量weight &amp;lt;- c(60,72,57,90,95,72)weightheight &amp;lt;- c(1.75,1.80,1.65,1.90,1.74,1.91)#计算BMIbmi &amp;l">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-02-14T10:14:15.563Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="R语言统计入门-第一章">
+<meta name="twitter:description" content="1.1 初始步骤123library(ISwR)#随机抽取1000个符合正态分布的随机数plot(rnorm(1000)) 1.1.3 向量运算123456789101112131415161718#构建向量weight &amp;lt;- c(60,72,57,90,95,72)weightheight &amp;lt;- c(1.75,1.80,1.65,1.90,1.74,1.91)#计算BMIbmi &amp;l">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/02/14/R语言统计入门-第一章/"/>
+
+
+
+
+
+  <title>R语言统计入门-第一章 | Bionew</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Bionew</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/14/R语言统计入门-第一章/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dr.二哈">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/images/头像26.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bionew">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">R语言统计入门-第一章</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-14T08:00:00+08:00">
+                2018-02-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/R/" itemprop="url" rel="index">
+                    <span itemprop="name">R</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-1-初始步骤"><a href="#1-1-初始步骤" class="headerlink" title="1.1 初始步骤"></a>1.1 初始步骤</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">library(ISwR)</span><br><span class="line">#随机抽取1000个符合正态分布的随机数</span><br><span class="line">plot(rnorm(1000))</span><br></pre></td></tr></table></figure>
+<h2 id="1-1-3-向量运算"><a href="#1-1-3-向量运算" class="headerlink" title="1.1.3 向量运算"></a>1.1.3 向量运算</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#构建向量</span><br><span class="line">weight &lt;- c(60,72,57,90,95,72)</span><br><span class="line">weight</span><br><span class="line">height &lt;- c(1.75,1.80,1.65,1.90,1.74,1.91)</span><br><span class="line">#计算BMI</span><br><span class="line">bmi &lt;- weight/height^2</span><br><span class="line">bmi</span><br><span class="line">#计算均值</span><br><span class="line">xbar &lt;- sum(weight)/length(weight)</span><br><span class="line">#计算偏差及其平方及偏差平方和</span><br><span class="line">weight - xbar</span><br><span class="line">(weight - xbar)^2</span><br><span class="line">sum((weight - xbar)^2)</span><br><span class="line">#标准差</span><br><span class="line">sqrt(sum((weight - xbar)^2)/(length(weight)-1))</span><br><span class="line">#其实已经有函数</span><br><span class="line">mean(weight)</span><br><span class="line">sd(weight)</span><br></pre></td></tr></table></figure>
+<h2 id="1-1-4-标准过程"><a href="#1-1-4-标准过程" class="headerlink" title="1.1.4 标准过程"></a>1.1.4 标准过程</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#单样本t检验，参数mu代表希腊字母μ，表示理论均值，若没有给定，则默认mu=0</span><br><span class="line">t.test(bmi, mu=22.5)</span><br></pre></td></tr></table></figure>
+<h2 id="1-1-5-作图"><a href="#1-1-5-作图" class="headerlink" title="1.1.5 作图"></a>1.1.5 作图</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#若研究体重与身高的关系，第一想法就是作图</span><br><span class="line">plot(height, weight)</span><br><span class="line">#用pch参数修改绘图符号,pch=2为三角形</span><br><span class="line">plot(height, weight,pch=2)</span><br><span class="line">#在图中叠加一个基于BMI为22.5的体重估计曲线</span><br><span class="line">hh &lt;- c(1.65,1.70,1.75,1.80,1.85,1.90)</span><br><span class="line">lines(hh, 22.5*hh^2)</span><br></pre></td></tr></table></figure>
+<h1 id="1-2-R语言基础"><a href="#1-2-R语言基础" class="headerlink" title="1.2 R语言基础"></a>1.2 R语言基础</h1><h2 id="1-2-3-向量"><a href="#1-2-3-向量" class="headerlink" title="1.2.3 向量"></a>1.2.3 向量</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#字符向量</span><br><span class="line">c(&quot;Huey&quot;,&quot;Dewey&quot;,&quot;Louie&quot;)</span><br><span class="line">#单引号或双引号都可以</span><br><span class="line">c(&apos;Huey&apos;,&apos;Dewey&apos;,&apos;louie&apos;)</span><br></pre></td></tr></table></figure>
+<h2 id="1-2-4-引用和转义序列"><a href="#1-2-4-引用和转义序列" class="headerlink" title="1.2.4 引用和转义序列"></a>1.2.4 引用和转义序列</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#输出一个不带引号的字符串，用cat函数</span><br><span class="line">cat(c(&quot;Huey&quot;,&quot;Dewey&quot;,&quot;Louie&quot;))</span><br><span class="line">#反斜杠\被称为转移字符。可用\&quot;方式插入引用字符</span><br><span class="line">cat(&quot;What is \&quot;R\&quot; ?\n&quot;)</span><br></pre></td></tr></table></figure>
+<h2 id="1-2-6-生成向量的函数"><a href="#1-2-6-生成向量的函数" class="headerlink" title="1.2.6 生成向量的函数"></a>1.2.6 生成向量的函数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#c()函数，含义是把各分项首尾连接</span><br><span class="line">c(42,57,12,39,1,3,4)</span><br><span class="line">#也可以用于连接多于一个元素的向量</span><br><span class="line">x &lt;- c(1,2,3)</span><br><span class="line">y &lt;- c(10,20)</span><br><span class="line">c(x, y, 5)</span><br><span class="line">#也可以给某些元素明明</span><br><span class="line">x &lt;- c(red=&quot;Huey&quot;,blue=&quot;Dewey&quot;,green=&quot;Louie&quot;)</span><br><span class="line">#seq()函数，用于建立数字等差序列</span><br><span class="line">seq(4,9)</span><br><span class="line">#若间距为2</span><br><span class="line">seq(4,10,2)</span><br><span class="line">#rep()函数，用来产生重复值</span><br><span class="line">#使用时有两个参数，依赖于第二个参数是想量还是数字，产生的结果也不一样</span><br><span class="line">opps &lt;- c(7,9,13)</span><br><span class="line">rep(opps,3)</span><br><span class="line">rep(opps,1:3)</span><br></pre></td></tr></table></figure>
+<h2 id="1-2-7-矩阵和数组"><a href="#1-2-7-矩阵和数组" class="headerlink" title="1.2.7 矩阵和数组"></a>1.2.7 矩阵和数组</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#用dim()函数设置或改变x的维度</span><br><span class="line">#将一个12个数字的向量改为3*4矩阵</span><br><span class="line">#值得注意的是。矩阵的存储是以列为主，即第二列元素跟在第一列元素后面</span><br><span class="line">x &lt;- 1:12</span><br><span class="line">dim(x) &lt;- c(3,4)</span><br><span class="line">#还可用matrix()函数创建矩阵，byrow=T是将矩阵改成以按行而不是按列形式填充</span><br><span class="line">matrix(1:12, nrow = 3, byrow = T)</span><br><span class="line">#给行命名</span><br><span class="line">#LETTERS[]特征向量是一个包含大写字母A-Z的内置变量</span><br><span class="line">rownames(x) &lt;- LETTERS[1:3]</span><br><span class="line">x</span><br><span class="line">#给列命名</span><br><span class="line">colnames(x) &lt;- LETTERS[4:7]</span><br><span class="line">x</span><br><span class="line">#将x转置</span><br><span class="line">t(x)</span><br><span class="line">#可以按行或按列分别采用cbind和rbind函数将向量粘在一起</span><br><span class="line">cbind(A=1:4,B=5:8,C=9:12)</span><br><span class="line">rbind(A=1:4,B=5:8,C=9:12)</span><br></pre></td></tr></table></figure>
+<h2 id="1-2-8-因子"><a href="#1-2-8-因子" class="headerlink" title="1.2.8 因子"></a>1.2.8 因子</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#创建数值向量pain，对五个病人的疼痛水平编码</span><br><span class="line">pain &lt;- c(0,3,2,2,1)</span><br><span class="line">#希望把它作为一个分类变量处理</span><br><span class="line">#利用函数factor创建一个因子fpain</span><br><span class="line">#这个函数除了调用pain之外，还有参数levels=0:3，意味着输入的编码使用了3个值0~3</span><br><span class="line">#这个参数可以省略，R默认使用pain中合理排序的值</span><br><span class="line">fpain &lt;- factor(pain,levels = 0:3)</span><br><span class="line">#将水平名称转换为特定的4个字符串</span><br><span class="line">levels(fpain) &lt;- c(&quot;none&quot;,&quot;mild&quot;,&quot;medium&quot;,&quot;severe&quot;)</span><br><span class="line">fpain</span><br></pre></td></tr></table></figure>
+<h2 id="1-2-9-列表"><a href="#1-2-9-列表" class="headerlink" title="1.2.9 列表"></a>1.2.9 列表</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#创建11个妇女月经前后能量摄入的向量</span><br><span class="line">intake.pre &lt;- c(5260,5470,5640,6180,6390,6515,6805,7515,7515,8230,8770)</span><br><span class="line">intake.post &lt;- c(3910,4220,3885,5160,5645,4680,5265,5975,6790,6900,7335)</span><br><span class="line">#把单独向量组合成一个列表</span><br><span class="line">mylist &lt;- list(before= intake.pre,after=intake.post)</span><br><span class="line">mylist</span><br><span class="line">#列表各部分通过list中使用的参数名称来命名</span><br><span class="line">mylist$before</span><br></pre></td></tr></table></figure>
+<h2 id="1-2-10-数据框"><a href="#1-2-10-数据框" class="headerlink" title="1.2.10 数据框"></a>1.2.10 数据框</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#创建数据框，注意数据是成对的</span><br><span class="line">d &lt;- data.frame(intake.pre,intake.post)</span><br><span class="line">d</span><br><span class="line">#也可以通过$符号获得</span><br><span class="line">d$intake.pre</span><br></pre></td></tr></table></figure>
+<h2 id="1-2-11-索引"><a href="#1-2-11-索引" class="headerlink" title="1.2.11 索引"></a>1.2.11 索引</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#如果需要向量的摸一个具体元素，可以这样</span><br><span class="line">#这个方括号就是索引</span><br><span class="line">intake.pre[5]</span><br><span class="line">#也可创建一个包含多于一个数据的子向量</span><br><span class="line">intake.pre[c(3,5,7)]</span><br><span class="line">#注意里面的c(3,5,7)是必要的。像下面的就不一样了</span><br><span class="line">#intake.pre[3,5,7]</span><br><span class="line">#负索引，即引用除了某些位置之外的所有元素</span><br><span class="line">intake.pre[-c(3,5,7)]</span><br></pre></td></tr></table></figure>
+<h2 id="1-2-12-条件选择"><a href="#1-2-12-条件选择" class="headerlink" title="1.2.12 条件选择"></a>1.2.12 条件选择</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#可以通过一个关系表达式选择一些满足某种标准的数据</span><br><span class="line">intake.post[intake.pre &gt; 7000]</span><br><span class="line">#寻找经前摄入7000-8000 kj的妇女，停经后的能量摄入</span><br><span class="line">intake.post[intake.pre &gt; 7000 &amp; intake.pre &lt;8000]</span><br></pre></td></tr></table></figure>
+<h2 id="1-2-13-数据框的索引"><a href="#1-2-13-数据框的索引" class="headerlink" title="1.2.13 数据框的索引"></a>1.2.13 数据框的索引</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">d &lt;- data.frame(intake.pre,intake.post)</span><br><span class="line">#寻找第5行。第1列的数据</span><br><span class="line">d[5,1]</span><br><span class="line">#寻找第5位妇女的所有数据，注意里面的逗号是必要的，若没有则表示d的第二列构成的数据框</span><br><span class="line">d[5,]</span><br><span class="line">#查找停经前能量摄入超过70000 kj的妇女</span><br><span class="line">d[d$intake.pre &gt; 7000,]</span><br><span class="line">#查看d中前几个数据</span><br><span class="line">d[1:2,]</span><br><span class="line">#函数head()默认显示前六行</span><br><span class="line">head(d)</span><br></pre></td></tr></table></figure>
+<h2 id="1-2-14-分组数据和数据框"><a href="#1-2-14-分组数据和数据框" class="headerlink" title="1.2.14 分组数据和数据框"></a>1.2.14 分组数据和数据框</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#R内置数据集energy，消瘦和肥胖妇女的能量消耗</span><br><span class="line">energy</span><br><span class="line">#有时候希望每一组有一个独立的向量来存储数据</span><br><span class="line">exp.lean &lt;- energy$expend[energy$stature == &quot;lean&quot;]</span><br><span class="line">exp.lean</span><br><span class="line">exp.obese &lt;- energy$expend[energy$stature == &quot;obese&quot;]</span><br><span class="line">exp.obese</span><br><span class="line">#也可以通过split函数，它根据分组生成一系列向量</span><br><span class="line">l &lt;- split(energy$expend, energy$stature)</span><br><span class="line">l</span><br></pre></td></tr></table></figure>
+<h2 id="1-2-15-隐式循环"><a href="#1-2-15-隐式循环" class="headerlink" title="1.2.15 隐式循环"></a>1.2.15 隐式循环</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#计算数值向量组成的数据框中每个变量的均值</span><br><span class="line">#lapply函数返回一个列表</span><br><span class="line">lapply(thuesen, mean, na.rm =T)</span><br><span class="line">#sapply函数尽可能将结果简化成矢量或矩阵</span><br><span class="line">sapply(thuesen, mean, na.rm =T)</span><br><span class="line">#apply函数。可以针对矩阵的行或列（或广义下多维数组的下标）</span><br><span class="line">#对于矩阵而言，apply函数中的参数2，表示按列，若为1，则表示按行，若为c(1,2)则表示行和列</span><br><span class="line">#下面表示按列取最小值</span><br><span class="line">m &lt;- matrix(rnorm(12),4)</span><br><span class="line">apply(m, 2, min)</span><br></pre></td></tr></table></figure>
+<h2 id="1-2-16-排序"><a href="#1-2-16-排序" class="headerlink" title="1.2.16 排序"></a>1.2.16 排序</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#使用sort()函数</span><br><span class="line">intake$post</span><br><span class="line">sort(intake$post)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创，长期缺钱</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.jpg" alt="Dr.二哈 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/ali.jpg" alt="Dr.二哈 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/R/" rel="tag"># R</a>
+          
+            <a href="/tags/统计/" rel="tag"># 统计</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/13/第一篇博客/" rel="next" title="第一篇博客">
+                <i class="fa fa-chevron-left"></i> 第一篇博客
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/images/头像26.jpg"
+                alt="Dr.二哈" />
+            
+              <p class="site-author-name" itemprop="name">Dr.二哈</p>
+              <p class="site-description motion-element" itemprop="description">一个生信自学者的微博</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-1-初始步骤"><span class="nav-number">1.</span> <span class="nav-text">1.1 初始步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-3-向量运算"><span class="nav-number">1.1.</span> <span class="nav-text">1.1.3 向量运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-4-标准过程"><span class="nav-number">1.2.</span> <span class="nav-text">1.1.4 标准过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-5-作图"><span class="nav-number">1.3.</span> <span class="nav-text">1.1.5 作图</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-2-R语言基础"><span class="nav-number">2.</span> <span class="nav-text">1.2 R语言基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-3-向量"><span class="nav-number">2.1.</span> <span class="nav-text">1.2.3 向量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-4-引用和转义序列"><span class="nav-number">2.2.</span> <span class="nav-text">1.2.4 引用和转义序列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-6-生成向量的函数"><span class="nav-number">2.3.</span> <span class="nav-text">1.2.6 生成向量的函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-7-矩阵和数组"><span class="nav-number">2.4.</span> <span class="nav-text">1.2.7 矩阵和数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-8-因子"><span class="nav-number">2.5.</span> <span class="nav-text">1.2.8 因子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-9-列表"><span class="nav-number">2.6.</span> <span class="nav-text">1.2.9 列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-10-数据框"><span class="nav-number">2.7.</span> <span class="nav-text">1.2.10 数据框</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-11-索引"><span class="nav-number">2.8.</span> <span class="nav-text">1.2.11 索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-12-条件选择"><span class="nav-number">2.9.</span> <span class="nav-text">1.2.12 条件选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-13-数据框的索引"><span class="nav-number">2.10.</span> <span class="nav-text">1.2.13 数据框的索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-14-分组数据和数据框"><span class="nav-number">2.11.</span> <span class="nav-text">1.2.14 分组数据和数据框</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-15-隐式循环"><span class="nav-number">2.12.</span> <span class="nav-text">1.2.15 隐式循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-16-排序"><span class="nav-number">2.13.</span> <span class="nav-text">1.2.16 排序</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dr.二哈</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count"></span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
