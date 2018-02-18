@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<meta name="baidu-site-verification" content="2EUxx8Kbj6" />
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="生信," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Bionew" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="第一章 生物序列资源第一节 引言1. 英文及缩写 DNA序列：DNA sequence； RNA序列：RNA sequence； 微阵列数据和基因表达：microarray data and gene expression； 蛋白质序列：protein sequence； 分子结构：structure； 蛋白质组学和蛋白质互作：proteomics and interaction； 代谢和信号通路">
+<meta name="keywords" content="生信">
+<meta property="og:type" content="article">
+<meta property="og:title" content="生物信息学-李霞第二版--第一章">
+<meta property="og:url" content="http://yoursite.com/2018/02/18/生物信息学-李霞第二版-第一章/index.html">
+<meta property="og:site_name" content="Bionew">
+<meta property="og:description" content="第一章 生物序列资源第一节 引言1. 英文及缩写 DNA序列：DNA sequence； RNA序列：RNA sequence； 微阵列数据和基因表达：microarray data and gene expression； 蛋白质序列：protein sequence； 分子结构：structure； 蛋白质组学和蛋白质互作：proteomics and interaction； 代谢和信号通路">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-02-18T09:41:31.107Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="生物信息学-李霞第二版--第一章">
+<meta name="twitter:description" content="第一章 生物序列资源第一节 引言1. 英文及缩写 DNA序列：DNA sequence； RNA序列：RNA sequence； 微阵列数据和基因表达：microarray data and gene expression； 蛋白质序列：protein sequence； 分子结构：structure； 蛋白质组学和蛋白质互作：proteomics and interaction； 代谢和信号通路">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/02/18/生物信息学-李霞第二版-第一章/"/>
+
+
+
+
+
+  <title>生物信息学-李霞第二版--第一章 | Bionew</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Bionew</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/18/生物信息学-李霞第二版-第一章/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dr.二哈">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/images/头像26.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bionew">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">生物信息学-李霞第二版--第一章</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-18T17:38:34+08:00">
+                2018-02-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/生物信息学/" itemprop="url" rel="index">
+                    <span itemprop="name">生物信息学</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3,820
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  14
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="第一章-生物序列资源"><a href="#第一章-生物序列资源" class="headerlink" title="第一章 生物序列资源"></a>第一章 生物序列资源</h1><h2 id="第一节-引言"><a href="#第一节-引言" class="headerlink" title="第一节 引言"></a>第一节 引言</h2><h3 id="1-英文及缩写"><a href="#1-英文及缩写" class="headerlink" title="1. 英文及缩写"></a>1. 英文及缩写</h3><ol>
+<li>DNA序列：<strong>DNA sequence</strong>；</li>
+<li>RNA序列：<strong>RNA sequence</strong>；</li>
+<li>微阵列数据和基因表达：<strong>microarray data and gene expression</strong>；</li>
+<li>蛋白质序列：<strong>protein sequence</strong>；</li>
+<li>分子结构：<strong>structure</strong>；</li>
+<li>蛋白质组学和蛋白质互作：<strong>proteomics and interaction</strong>；</li>
+<li>代谢和信号通路：<strong>metabolic and signaling pathways</strong>；</li>
+<li>人类基因与疾病：<strong>human genes and diseases</strong>；</li>
+<li>生理与病理：<strong>physiology and pathology</strong>；</li>
+<li>药物与药物靶标：<strong>drug and drug targets</strong>；</li>
+<li>细胞器与细胞生物学：<strong>organelle and cell biology</strong>；</li>
+<li>人类及其他脊椎动物基因组：<strong>human and other vertebrate genomics</strong>；</li>
+<li>非脊椎动物基因组：<strong>non-vertebrate genomics</strong>；</li>
+<li>植物基因组：<strong>plants genomics</strong>；</li>
+</ol>
+<h2 id="第二节-NCBI数据库与数据资源"><a href="#第二节-NCBI数据库与数据资源" class="headerlink" title="第二节 NCBI数据库与数据资源"></a>第二节 NCBI数据库与数据资源</h2><h3 id="1-名词"><a href="#1-名词" class="headerlink" title="1. 名词"></a>1. 名词</h3><ol>
+<li>三大生物序列信息数据库：<strong>GenBank，EMBL，DDBJ</strong>；</li>
+<li>NCBI中较重要的数据子库：<ul>
+<li><strong>GenBank</strong>：GenBank是NIH遗传序列数据库，集成了所有公开可获得的已注释DNA序列。<br>GenBank收录的核酸序列数据根据其不同的研究属性，分属于Nucleotide、GSS和EST三个子库。<ul>
+<li><strong>Nucleotide</strong>：收录绝大多数常规的核酸序列；</li>
+<li><strong>GSS</strong>：Genome Survey Sequence，收录测序起始阶段用来进行序列或基因示踪、重复序列或基因数量预判等的各种短读长（reads）序列；</li>
+<li><strong>EST</strong>：Expression Sequence Tag，收录cDNA及cDNA特征序列信息。</li>
+</ul>
+</li>
+<li><strong>RefSeq</strong>：GenBank中的数据是由用户提交数据构成，具有较高的冗余度和差错率，为更好实现特征序列的查询，NCBI在GenBank数据基础上针对每个基因不同的数据类别提取一个可靠的注释条目作为参考条件，组成RefSeq（reference sequence）数据库。<br>其数据标识类似于NM<em>000572.2，“NM</em>”代表特异的数据类型，“.2”表示更新版本。</li>
+<li><strong>Gene数据库</strong>：基因数据库收录全部已测序五中的基因注释信息，包括基因的名称、染色体定位、基因序列和编码产物（mRNA，蛋白质）情况、基因功能和相关文献信息等。<br>基因数据库标识符即Entrez gene ID，依据基因的发现顺序由1到多位数字组成，如<em>IL10</em>基因的标识符为3586。</li>
+<li><strong>Genome</strong>：NCBI收录了超过1000中已经完成测序的生物体全部基因组序列和定位数据，以及正在进行测序的物种阶段性发布的基因组信息。</li>
+<li><strong>遗传多态数据库</strong>：NCBI中的dbSNP、dbVar、dbGap和ClinVar四个子库涉及DNA多态或变异信息。<ul>
+<li><strong>dbSNP</strong>：收录了所有物种中发现的短序列多态和突变信息，包括单核苷酸多态、微卫星、小片段插入\删除多态（in/del）等定位、侧翼序列和功能、频率信息。收录的SNP条目一般以“rs+数字”的形式表示；</li>
+<li><strong>dbVar</strong>：主要收录较大规模的基因组变异，包括大片段的插入、遗失、易位、倒置和拷贝数多态等信息资源；</li>
+<li><strong>dbGap</strong>：收录大量以遗传多态为分子标记物的基因型和表型（疾病）关联性研究数据；</li>
+<li><strong>ClinVar</strong>：收录临床中发现或报导的有证据支持的与人类疾病或健康状态有段的变异位点，并与多个疾病和卫生系统数据库进行交互引用。</li>
+</ul>
+</li>
+<li><strong>GEO</strong>：Gene Expression Omnibus：接受和管理各研究机构提交的基因芯片或测序技术获得的不同生理、病理状态个体或细胞系基因（包括非编码基因）表达数据。</li>
+<li><strong>蛋白质数据库</strong>：NCBI蛋白质数据库收录来源于GenPept、RefSeq、Swiss-Prot、PIR、PRF及PDB等蛋白质数据资源的蛋白质序列和注释数据。<ul>
+<li><strong>Protein Cluster数据库</strong>：提供存在一定联系的蛋白质集合信息，并与蛋白质注释、结构、结构域、家族相关数据库之间交互访问；</li>
+<li><strong>Structure数据库</strong>：是由蛋白质三维结构数据库PDB衍生出来的大分子模建数据库，提供蛋白质三维结构信息及相关的可视化和结构比对工具。</li>
+</ul>
+</li>
+<li><strong>Epigenomics</strong>：是一个表观基因组数据查询和浏览相结合的数据库。提供DNA甲基化、组蛋自修饰等表观遗传学数据集下载，基因序列、表观遗传状态的定位比较和可视化等。   </li>
+<li><strong>Unigene数据库</strong>：针对每一个基因建立一个独立的数据体系，分别将不同来源的基因序列、蛋白质相似性（与模式生物比较）、基因表达（不同组织或发育状态）、染色体定位、cDNA序列、mRNA序列（选择性剪接）、EST序列等进行罗列和比较，旨在为研究者提供全面、丰富的信息资源，更好地对基因的功能和注释信息的可靠性进行梳理。</li>
+<li><strong>与生物医学相关的重要数据库</strong>：<ul>
+<li><strong>OMIM数据库</strong>：在文献检索基础上，分别以疾病和基因为中心，阐述遗传变异介导的疾病（表型）相关基因情况，及变异介导的基因参与不同疾病（表型）情况；</li>
+<li><strong>GdbMHC</strong>：Database of Major Histocompatibility Complex，收录人类主要组织相容性复合体数据及其相关的分子标记物信息；</li>
+<li><strong>HIV-1与人类蛋白质互作数据库</strong>：收录HIV-1蛋自与人类宿主蛋自相互作用信息。NCBI中还包括大量病毒相关信息（如病毒基因组序列，流感. SARS等特种病毒解析，病毒基因组变异等）、药物化学信息和文献数据信息等。</li>
+</ul>
+</li>
+<li><strong>NCBI提供的重要支持工具</strong>：<ul>
+<li><strong>BLSAT</strong>，是由NCBI开发的序列相似性搜索程序，检索速度快，有助于识别基因和基因特征(详见第二章)。</li>
+<li><strong>Primer-BLAST工具</strong>：<a href="http://www.ncbi.nlm.nih.gov/tools/primer-blast" target="_blank" rel="noopener">Primer-BLAST链接地址</a>，可用于多方面生物医学研究过程的核酸引物设计。</li>
+<li>由NCBI提供的其他软件工具还包括:开放阅读框搜索（ORF Finder）、电子PCR和序列提交工具Sequin和BankIt等。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="2-英文及缩写"><a href="#2-英文及缩写" class="headerlink" title="2. 英文及缩写"></a>2. 英文及缩写</h3><ol>
+<li>美国国家健康研究所：<strong>NIH</strong>；</li>
+<li>国家医学图书馆：<strong>NLM</strong>；</li>
+<li>人类拉丁种名：<strong><em>Homo Sapiens</em></strong>；</li>
+<li>包括单核苷酸多态：<strong>single nucleotide polymorphysm</strong>，<strong>SNP</strong>；</li>
+<li>微卫星：<strong>microsatelite</strong>；</li>
+<li>拷贝数多态：<strong>copy number variation</strong>，<strong>CNV</strong>；</li>
+<li>基因组范围关联分析：<strong>GWAS</strong>；</li>
+</ol>
+<h2 id="第三、四节-UCSC基因组浏览器与数据资源、EMBL-EBI数据库与数据资源"><a href="#第三、四节-UCSC基因组浏览器与数据资源、EMBL-EBI数据库与数据资源" class="headerlink" title="第三、四节 UCSC基因组浏览器与数据资源、EMBL-EBI数据库与数据资源"></a>第三、四节 UCSC基因组浏览器与数据资源、EMBL-EBI数据库与数据资源</h2><h3 id="1-名词-1"><a href="#1-名词-1" class="headerlink" title="1. 名词"></a>1. 名词</h3><ol>
+<li><strong>UCSC基因组浏览器</strong>：<a href="http://genome.ucsc.edu" target="_blank" rel="noopener">UCSC基因组浏览器链接</a>，重要的基因组数据收集、整理、检索、可视化和辅助研究的重要工具；<ul>
+<li>导航栏和工具栏提供多种便利的基因组查询和注释工具<ul>
+<li><strong>Browser</strong>可以缩放和滚动的方式查看染色体的注释；</li>
+<li><strong>Blat</strong>可以快速将用户输入的序列以图像的方式在基因组中显示；</li>
+<li><strong>Tables</strong>提供便捷的入口链接到基础数据库；</li>
+<li><strong>Gene Sorter</strong>展示表达、同源性和以多种方式关联的其他基因组信息；</li>
+<li><strong>VisiGene</strong>可以让用户浏览大量的检测小鼠和青蛙表达模式的原位图像；</li>
+<li><strong>Genome Graphs</strong>允许用户上传或显示基因组范围的数据集等。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>EMBL-EBI数据库</strong>：<ul>
+<li><strong>Ensembl基因组序列数据资源</strong>：EMBL-EBI中有Ensembl和Ensembl Genmoes基因组序列资源数据库；<ul>
+<li><strong>Ensembl数据库</strong>：提供高质量、综合注释的脊椎动物基因组数据；</li>
+<li><strong>Ensembl Genmoes数据库</strong>：提供非脊椎动物全基因组数据；</li>
+</ul>
+</li>
+<li><strong>ENA欧洲核苷酸数据库</strong>：提供世界范围的核酸测序原始数据、序列拼接和功能注释信息的维护和下载，并记录和存储数据集测序全过程的技术应用情况：样品分离和材料准备，使用的仪器设备和配置，实验过程的主要环节，数据输出后的序列读取和质量评价，数据的生物信息学拼接、制图、功能注释等。<br>ENA数据包括机构或个人提交的原始数据，序列拼接和小规模测序注释数据，欧洲各大测序中心提供的测序数据，国际核酸序列数据库协作组织的合作伙伴的定期交换数据等。</li>
+<li><strong>UniProt蛋白质数据资源</strong>：<ul>
+<li><strong>UniProt数据库包括</strong>：UniProtKnowledgebase（UniProrKB）、UniProt Reference Clusters（UniRef），UniProt Archive（UniParc）三个主要部分，及用于专门存放元基因组和环境基因组数据信息的UniProt Meta-genomic和Environmental Sequences（UniMES）数据库。<a href="http://www.uniprot.org" target="_blank" rel="noopener">门户链接</a>或<a href="http://www.ebi.ac.uk/uniprot/" target="_blank" rel="noopener">EBI链接</a>。</li>
+<li><strong>UniProrKB</strong>：UniProtKB是UniProt的核心资源，主要包括Swiss-Prot和TrEMBL两部分核心数据。<ul>
+<li><strong>UniProt/Swiss-Prot</strong>：收录非冗余的、高质量的专家手工注释数据。注释过程针对每一个蛋白质可用的序列信息进行分析、比较、整合，严格审核与本条目相关的文献发表的实验和计算分析。<br>对于每一条记录，UniProt/Swiss-Prot期望从文献、其他数据库中搜集每一个物种每一个蛋白质的所有注释信息，以及与蛋白质相关的选择性剪接、多态、翻译后修饰、蛋自质家族等信息。</li>
+<li><strong>UniProtKB/TrEMBL</strong>：收录的蛋白质信息是经高质量计算分析获得的自动化注释和分类信息，也是Swiss-Prot的资源储备库，一经手工注释后即转入Swiss-Prot。</li>
+<li>概括起来看，UniProtKB收录的蛋白质序列信息包括:① DDBJ/ENA/GenBank来源的编码序列（CDS）翻译；② PDB中存储了结构信息的蛋自质序列；③ Ensembl和RefSeq提供的序列；④ 直接提交到UniProtKB或文献检索到的氨基酸序列。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="2-英文及缩写-1"><a href="#2-英文及缩写-1" class="headerlink" title="2. 英文及缩写"></a>2. 英文及缩写</h3><ol>
+<li>加州大学圣克鲁兹分校：<strong>University of California，Santa Cruz</strong>，<strong>UCSC</strong>；</li>
+<li>欧洲生物信息学研究所：<strong>EBI</strong>，<a href="http://www.ebi.ac.uk/" target="_blank" rel="noopener">地址</a>;</li>
+<li>欧洲分子生物学实验室：<strong>EMBL</strong>，<a href="http://www.embl.org/" target="_blank" rel="noopener">地址</a>；</li>
+<li>瑞士生物信息学研究所：<strong>SIB</strong>；</li>
+<li>DNA元件百科全书计划：<strong>Encyclopedia of DNA Elements</strong>，<strong>ENCODE</strong>，<a href="https://www.encodeproject.org" target="_blank" rel="noopener">地址</a>;</li>
+<li>尼安德特人基因组分析：<strong>Neandertal</strong>，<a href="http://genome.ucsc.edu/Neandertal" target="_blank" rel="noopener">地址</a>;</li>
+<li>哺乳动物：<strong>mammal</strong>；</li>
+<li>后口动物：<strong>deuterostome</strong>；</li>
+<li>昆虫：<strong>insect</strong>；</li>
+<li>线虫：<strong>nematode</strong>；</li>
+<li>欧洲核苷酸数据库：<strong>European Nucleotide Archive</strong>，<strong>ENA</strong>，<a href="http://www.ebi.ac.uk/ena/" target="_blank" rel="noopener">地址</a>；</li>
+<li>国际核酸序列数据库协作组织：<strong>INSDC</strong>；</li>
+<li>蛋自质专家注释系统：<strong>Swiss-Prot</strong>；</li>
+<li>核酸序列翻译数据库：<strong>TrEMBL</strong>；</li>
+</ol>
+<h2 id="第五节-重要的非编码基因数据库"><a href="#第五节-重要的非编码基因数据库" class="headerlink" title="第五节 重要的非编码基因数据库"></a>第五节 重要的非编码基因数据库</h2><h3 id="1-名词-2"><a href="#1-名词-2" class="headerlink" title="1. 名词"></a>1. 名词</h3><ol>
+<li><strong>ENCODE数据库</strong>：ENCODE全称为DNA元件百科全书计划，与2003年启动，获得并分析了超过15兆兆（15万亿字节）的原始数据，对基因组功能元件进行解析。<br>与编码蛋白质相关的基因只占整个基因组的2%，人类基因组中约80%的DNA序列是具有某种特定功能的。</li>
+<li><strong>miRBase</strong>：miRBase（<a href="http://www.mirbase.org/" target="_blank" rel="noopener">地址</a>）是存储、维护和命名微小RNA（microRNA）的主要数据库，主要数据资源为microRNA序列和注释信息。miRBase使用友好的网络界面，为用户提供miRNA前体和成熟序列下载。允许用户使用关键词或序列检索数据库，通过关联链接到miRNA的原始参考文献，分析基因组中的定位和挖掘miRNA序列间的关系。miRBase还提供保密的基因命名服务，在新基因发表前指定正式的miRNA名称。</li>
+</ol>
+<h3 id="2-英文及缩写-2"><a href="#2-英文及缩写-2" class="headerlink" title="2. 英文及缩写"></a>2. 英文及缩写</h3><ol>
+<li>微小RNA：<strong>microRNA</strong>；</li>
+</ol>
+<h2 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h2><ol>
+<li>生物数据库根据其存储的数据类型可以分为几类？<br>答：大致可分为5类：<strong>基因组数据库</strong>、<strong>核酸序列数据库</strong>、<strong>蛋白质序列数</strong>、<strong>生物大分子（主要是蛋白质）三维空间结构数据库</strong>、及根据生命科学不同研究领域的实际需要，对基因组图谱、核酸和蛋自质序列、蛋自质结构以及文献等数据进行分析、整理、归纳、注释，构建具有特殊生物学意义和专门用途的<strong>二次数据库</strong>。</li>
+<li>DDBJ和另外哪两个数据库并称为世界三大核酸数据库，并通过网络查询DDBJ数据库的信息存储情况。<br>答：<strong>EMBL</strong>、<strong>GenBank</strong>。 </li>
+<li>Entrez Gene数据库从哪些方面对基因进行注释？<br>答：注释内容包括基因概况、基因组结构、基因组定位、参考书目、表现型、基因变异、HIV-1互作、通路注释、互作、基因功能、同源性、编码蛋白质情况、序列信息，及交叉引用链接。</li>
+<li>dbSNP数据库维护的数据类型有哪些，这些数据有什么应用？<br>答：dbSNP：收录了所有物种中发现的短序列多态和突变信息，包括单核苷酸多态、微卫星、小片段插入\删除多态（in/del）等定位、侧翼序列和功能、频率信息。</li>
+<li>UCSC基因组浏览器显示的数据资源如何以可出版的图片形式输出？<br>答：基因组浏览器图像输出：UCSC基因组浏览器支持生成适于文献出版和打印的高质量图像。打印前用户可以在序列碱基栏左端标签处点击鼠标右键选择配置管理（Configure ruler）按钮，打开设置页面，可在标题栏中添加通道输出图片标题，还可以选择增加组合名称和染色体位置方式将标题加入到通道中。鼠标左键拖拽各通道对应的灰色工具条还可以根据输出需要改变各通道的位置。用户完成通道图像配置后，点击导航栏中view按钮下拉菜单中的PDF/PS选项，选择所需的文件输出格式保存图像。</li>
+<li>如何利用UCSC模块实现序列数据的批量下载？<br>答： </li>
+<li>EMBL-EBI维护数据的规模化标准有哪些？<br>答：数据资源遵循严格的规模化管理：① 可访问性，所有数据和工具完全开放访问；② 兼容性，数据达到世界最高层次的标准化规范，有利于推动数据共享；③ 数据集综合性，与各研究、出版机构和各人数据库达到数据提交、共享协议，保障数据来源和交叉引用；④ 便携性，EBI所有数据库均可下载，全部软件系统可以下载并本地安装；⑤ 保证质量，EBI具有专家注释系统，大量数据资源通过生物医学专家注释保障数据质量。    </li>
+<li>如何利用Ensembl-BioMart平台实现核酸序列数据的查询和下载？<br>答：  </li>
+<li>简述UniProt数据的基本构建，并简要介绍UniProtKB的检索流程和主要的分析工具。<br>答：UniProt数据库包括UniProtKnowledgebase（UniProrKB）、UniProt Reference Clusters（UniRef）, UniProt Archive（UniParc）三个主要部分，及用于专门存放元基因组和环境基因组数据信息的UniProt Metagenomic和Environmental Sequences（UniMES）数据库。    </li>
+<li>试列举2到3个非编码基因序列维护数据库名称及其存储的数据特点。<br>答：</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创，长期缺钱</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.jpg" alt="Dr.二哈 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/ali.jpg" alt="Dr.二哈 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/生信/" rel="tag"><i class="fa fa-tag"></i> 生信</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/17/生物信息学-李霞第二版-绪论/" rel="next" title="生物信息学-李霞第二版-绪论">
+                <i class="fa fa-chevron-left"></i> 生物信息学-李霞第二版-绪论
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/images/头像26.jpg"
+                alt="Dr.二哈" />
+            
+              <p class="site-author-name" itemprop="name">Dr.二哈</p>
+              <p class="site-description motion-element" itemprop="description">一个生信自学者的微博</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第一章-生物序列资源"><span class="nav-number">1.</span> <span class="nav-text">第一章 生物序列资源</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一节-引言"><span class="nav-number">1.1.</span> <span class="nav-text">第一节 引言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-英文及缩写"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. 英文及缩写</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二节-NCBI数据库与数据资源"><span class="nav-number">1.2.</span> <span class="nav-text">第二节 NCBI数据库与数据资源</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-名词"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. 名词</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-英文及缩写"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. 英文及缩写</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三、四节-UCSC基因组浏览器与数据资源、EMBL-EBI数据库与数据资源"><span class="nav-number">1.3.</span> <span class="nav-text">第三、四节 UCSC基因组浏览器与数据资源、EMBL-EBI数据库与数据资源</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-名词-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">1. 名词</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-英文及缩写-1"><span class="nav-number">1.3.2.</span> <span class="nav-text">2. 英文及缩写</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第五节-重要的非编码基因数据库"><span class="nav-number">1.4.</span> <span class="nav-text">第五节 重要的非编码基因数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-名词-2"><span class="nav-number">1.4.1.</span> <span class="nav-text">1. 名词</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-英文及缩写-2"><span class="nav-number">1.4.2.</span> <span class="nav-text">2. 英文及缩写</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#习题"><span class="nav-number">1.5.</span> <span class="nav-text">习题</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dr.二哈</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">7.4k</span>
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_pv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
