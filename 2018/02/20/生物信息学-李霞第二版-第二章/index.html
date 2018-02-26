@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<meta name="baidu-site-verification" content="2EUxx8Kbj6" />
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="生信," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Bionew" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="第二章 序列比对第一节 引言1. 名词 序列比对：序列比对对于发现生物序列中有关功能、结构和进化的信息具有非常重要的意义，其主要思想就是运用特定的算法找出两个或多个序列之间产生最大相似性得分的空格插入和序列排列方案。 在实际操作中，序列比对是计算生物学中解决序列装配、进化树重构及分析基因功能等众多问题的第一步。 根据同时比对的序列数量的不同，一般将序列比对分成双序列比对和多序列比对。 与双序列比对">
+<meta name="keywords" content="生信">
+<meta property="og:type" content="article">
+<meta property="og:title" content="生物信息学-李霞第二版-第二章">
+<meta property="og:url" content="http://yoursite.com/2018/02/20/生物信息学-李霞第二版-第二章/index.html">
+<meta property="og:site_name" content="Bionew">
+<meta property="og:description" content="第二章 序列比对第一节 引言1. 名词 序列比对：序列比对对于发现生物序列中有关功能、结构和进化的信息具有非常重要的意义，其主要思想就是运用特定的算法找出两个或多个序列之间产生最大相似性得分的空格插入和序列排列方案。 在实际操作中，序列比对是计算生物学中解决序列装配、进化树重构及分析基因功能等众多问题的第一步。 根据同时比对的序列数量的不同，一般将序列比对分成双序列比对和多序列比对。 与双序列比对">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-02-26T13:02:04.126Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="生物信息学-李霞第二版-第二章">
+<meta name="twitter:description" content="第二章 序列比对第一节 引言1. 名词 序列比对：序列比对对于发现生物序列中有关功能、结构和进化的信息具有非常重要的意义，其主要思想就是运用特定的算法找出两个或多个序列之间产生最大相似性得分的空格插入和序列排列方案。 在实际操作中，序列比对是计算生物学中解决序列装配、进化树重构及分析基因功能等众多问题的第一步。 根据同时比对的序列数量的不同，一般将序列比对分成双序列比对和多序列比对。 与双序列比对">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/02/20/生物信息学-李霞第二版-第二章/"/>
+
+
+
+
+
+  <title>生物信息学-李霞第二版-第二章 | Bionew</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Bionew</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/20/生物信息学-李霞第二版-第二章/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dr.二哈">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/images/头像26.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bionew">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">生物信息学-李霞第二版-第二章</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-20T18:39:34+08:00">
+                2018-02-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/生物信息学/" itemprop="url" rel="index">
+                    <span itemprop="name">生物信息学</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4,577
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  16
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="第二章-序列比对"><a href="#第二章-序列比对" class="headerlink" title="第二章 序列比对"></a>第二章 序列比对</h1><h2 id="第一节-引言"><a href="#第一节-引言" class="headerlink" title="第一节 引言"></a>第一节 引言</h2><h3 id="1-名词"><a href="#1-名词" class="headerlink" title="1. 名词"></a>1. 名词</h3><ol>
+<li>序列比对：序列比对对于发现生物序列中有关功能、结构和进化的信息具有非常重要的意义，其主要思想就是运用特定的算法找出两个或多个序列之间产生最大相似性得分的空格插入和序列排列方案。<ul>
+<li>在实际操作中，序列比对是计算生物学中解决序列装配、进化树重构及分析基因功能等众多问题的第一步。</li>
+<li>根据同时比对的序列数量的不同，一般将序列比对分成双序列比对和多序列比对。</li>
+<li>与双序列比对相比，多序列比对能有效发掘多个序列中的相似性信息。<ul>
+<li>当两个序列不能很好地比对并借此揭示序列的变化所蕴含的意义时，通过引入更多的序列，多序列比对可有效地使这两个原本难以直接比对的序列合理地关联起来。</li>
+<li>其次，多序列比对常常用于分析种系距离很大的多个序列，揭示这些序列中保守的和非保守的区段、保守区段的分布特征以及序列变化的进化趋势，这对于研究生物系统的进化是必不可少的。</li>
+<li>再者，许多预测<strong>RNA</strong>和蛋白质结构与功能的算法立足于相应的多序列比对，通过比较未知分子的序列和已知分子的序列来预测前者的结构与功能。<br>因此，多序列比对是基因组分析和蛋白质组分析的最常用手段之一。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>同源、相似与距离<ul>
+<li>同源：如果两个序列享有一个共同的进化上的祖先，则这两个序列是同源的。</li>
+<li>同源是个定性的概念，没有“度”的差异。</li>
+<li>与同源相关但不同的两个概念是相似和距离，它们都是定量的概念，基于对序列中字符的精确比较，既可以说两个序列高度相似，也可以说它们之间的跟离非常小。</li>
+<li>相似性与距离是两个定量描述多个序列相似程度的度量。</li>
+<li>使用相似性时，比对计分给出被比对序列间的相似程度，使用距离时，比对计分给出被比对序列间的差异程度。</li>
+<li>相似性既可用于全局比对也可用于局部比对，而距离一般仅用于全局比对，因为它反映了把一个序列转换成另一个序列所需的字符替换的耗费。</li>
+<li>同源可进一步分作垂直同源和水平同源。<ul>
+<li>垂直同源是指在种系形成过程中起源于一个共同祖先的不同种系中的<strong>DNA</strong>或蛋白质序列，其关系可用一棵倒置的树说明。</li>
+<li>水平同源主要是由序列复制事件产生的，例如人<strong>alpha-1</strong>球蛋白和<strong>alpha-2</strong>球蛋自是水平同源的，人<strong>alpha-1</strong>球蛋白和<strong>beta</strong>球蛋白也是水平同源的。</li>
+<li>一般假定，同源序列具有相同的功能。例如，与血红蛋白同源的人和鼠的肌球蛋白都能在肌肉中运输氧，但应注意，垂直同源和水平同源基因未必总有相同的功能。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>相似与距离的定量描述</p>
+<ul>
+<li><p>相似性可定量地定义为两个序列的函数，即它可有多个值，值的大小取决于两个序列对应位置上相同字符的个数，值越大则表示两个序列越相似。</p>
+</li>
+<li><p>编辑距离也可定量地定义为两个序列的函数，其值取决于两个序列对应位置上差异字符的个数，值越小则表示两个序列越相似。</p>
+</li>
+<li><p>可以看出，相似性和编辑距离是一对相反的定量描述序列相似性的度量。这样，相似性有两种定量表达的方式：编辑距离和相似性得分。</p>
+</li>
+<li><p>使用相似性描述两个序列相似程度，是以某种计分规则计算两个序列相似性所得的分值。</p>
+</li>
+<li><p>计分一般是字符位置无关的（字符列无关的），即计算对应字符两两比较的分数，然后将所有字符的分数累加得到两条序列的相似性得分。</p>
+</li>
+<li><p>显然，存在许多不同的计分规则可对两两字符比较进行计分。明显地，除了在两个字符上不同的计分规则可以产生差异，序列间排列的不同也影响相似性得分。例如，如果<strong>seql</strong>与<strong>seq2</strong>交错一位再比对，则计分结果将显著受到影响。</p>
+<p>  |               |                  | seq1=       | ATC  | AGGCT | GCTAGCTA |<br>  | ————- | —————- | ———– | —- | —– | ——– |<br>  |               |                  | seq2=       | TAC  | ACCTT | CGTGAGCA |<br>  | 打分规则1     | p(a,a)=1         |             |      |       |          |<br>  |               | p(a,b)=0,(a≠b)   | 相似性得分= | 1    | 2     | 3        |<br>  | 打分规则2     | p(a,a)=0.8       |             |      |       |          |<br>  |               | p(a,b)=0.2,(a≠b) | 相似性得分= | 1.2  | 2.2   | 2.8      |<br>  | 打分规则BLAST |                  |             | -3   | -2    | -6       |<br>  |               | A                | T           | C    | G     |          |<br>  | A             | 5                | -4          | -4   | -4    |          |<br>  | T             | -4               | 5           | -4   | -4    |          |<br>  | C             | -4               | -4          | 5    | -4    |          |<br>  | G             | -4               | -4          | -4   | 5     |          |</p>
+</li>
+<li><p>编辑距离一般用海明（Hamming）距离表示，对于两条长度相等的序列，它们的海明距离等于对应位置不同字符的个数。</p>
+<p>| seq1=                        | ATC  | AGGCT | GCTAGCTA |<br>| —————————- | —- | —– | ——– |<br>| seq2=                        | TAC  | ACCTT | CGTGAGCA |<br>| Hamming Distance(seq1,seq2)= | 2    | 3     | 6        |</p>
+</li>
+</ul>
+</li>
+<li>算法实现的比对<ul>
+<li>比对两个序列就是找出两个序列的最长公共子序列，它反映了两个序列的最高相似度。</li>
+<li>序列<strong><em>v</em></strong>的子序列是<strong><em>v</em></strong>中一个有序但末必连续的字符序列。</li>
+<li>例如，若<strong><em>v</em></strong>=<strong>ATTGCTA</strong>，则AGCA和ATTA都是v的子序列，而TGTT和TCG则不是。再如，若v=ATCTGAT, w=TGCATA，则v和w存在多个共同子序列，包括TCTA；显然，其中一些共同子序列要比另外一些共同子序列长。但问题是，如何找出最长的共同子序列常常并不是显而易见的。</li>
+<li>寻找两个序列的最长共同子序列的一个简单方法是，先计算出所有可能的共同子序列，然后找出最长的那个。但此方法不具有实际的可行性，因为当序列较长时计算所有可能的共同子序列极其费时。</li>
+</ul>
+</li>
+<li>序列比对的作用：<br> 相比于双序列比对，多序列比对具有更广泛的重要应用，包括以下几个方面。<ul>
+<li>获得共性序列：由多序列比对所得到的与所有序列距离最近的序列称为这此序列的共有序列（也称一致序列），共性序列常用于数据库搜索和芯片探针设计，用于识别只有高相似度的序列。    </li>
+<li>序列测序：如一个<strong>DNA</strong>或蛋白质序列被多个机构测序，则测序结果在某些核苷酸或氨基酸上可能存在差异，对这些测序结果进行全局多序列比对，可发现这些差异之处，形成的共性序列理论上最为接近真实的序列。其次，对包含重叠区的多个测序序列进行局部多序列比对可发现这些重叠区，实现测序序列的拼接。   </li>
+<li>突变分析：同一种系不同个体的基因组存在因突变而产生的差异，最常见的是单核苷酸多态性，指不同个体基因组中单个核苷酸的包括置换、缺失和插入在内的变异，这些差异可通过多序列比对进行揭示。    </li>
+<li>种系分析：相近种系动植物的基因和基因组由于源自共同的直接祖先而具有高度的相似性，反之，远距种系动植物的基因和基因组由于源自不同的直接祖先而享有更少的相似性，这一事实使得多序列比对常常用于根据基因或基因组序列的差异判断种系关系，多序列比对通常是构造种系树的第一步。 </li>
+<li>保守区段分析：基因组中功能不同的区段在进化中面对不同的选择压力，即重要的区段不易接受突变而非重要的区段易于接受突变。任何基因组都包含大量不同的在选择压力下保持进化上稳定的保守区段，多序列比对是找出进化上保守的这此区段的基本方法。    </li>
+<li>基因和蛋白质功能分析：在大量基因和蛋白质的功能得以揭示和更多基因和蛋白质的序列得以测定后，根据与功能已知的同源基因和蛋白质进行多序列比对来推断新基因和蛋白质的功能已成为越来越普遍的一个研究手段。 </li>
+</ul>
+</li>
+</ol>
+<h3 id="2-英文及缩写"><a href="#2-英文及缩写" class="headerlink" title="2. 英文及缩写"></a>2. 英文及缩写</h3><ol>
+<li>双序列比对：<strong>pairwaise alignment</strong>；</li>
+<li>多序列比对：<strong>multiple alignment</strong>；</li>
+<li>同源：<strong>homolog</strong>；</li>
+<li>相似：<strong>similarity</strong>；</li>
+<li>距离：<strong>distance</strong>；</li>
+<li>趋同进化：<strong>convergent evolution</strong>；</li>
+<li>垂直同源：<strong>ortholog</strong>；</li>
+<li>水平同源：<strong>paralog</strong>；</li>
+<li>编辑距离：<strong>edit distance</strong>；</li>
+<li>最长公共子序列：<strong>longest common subsequence</strong>，<strong>LCS</strong>；</li>
+<li>共有序列：<strong>consensus sequence</strong>；</li>
+</ol>
+<h2 id="第二节-比对算法概要"><a href="#第二节-比对算法概要" class="headerlink" title="第二节 比对算法概要"></a>第二节 比对算法概要</h2><h3 id="1-名词-1"><a href="#1-名词-1" class="headerlink" title="1.名词"></a>1.名词</h3><ol>
+<li>替换计分矩阵：对于序列中单个字符的插入和缺失引起的失配，序列比对采用插入空格来处理，使得原本对应的字符仍}日能够对应；而对于序列中单个字符的替换引起的失配，需要考虑不同替换的意义。在双序列比对中对于这类失配应该怎么计分（实际上是罚分）是本节的内容。合理而精确的计分需要考虑替换的各种情形。对于<strong>DNA</strong>和<strong>RNA</strong>序列，情况特别简单，施用于4种碱基和6种彼此间替换关系的计分规则可用简单的替换计分矩阵来描述。对于蛋白质序列，因为蛋白质由20种氨基酸构成，且不同的氨基酸具有不同的理化性质，情况较为复杂，存在许多不同的替换计分矩阵。<ul>
+<li>通过点矩阵对序列比较进行计分：<br> “矩阵作图法”或“对角线作图”由Gibb首先提出。将两条待比较的序列分别放在矩阵的X/Y轴上，从下往上和从左到右比较，当对应行与列的字符匹配时，则在矩阵对应的位置上打点。逐个比较所有的字符对，最终形成一个点矩阵。如果两条序列完全相同，则点矩阵的主对角线各位置都被标记；如果两条序列存在相同的子串，则对每一个子串对有一条与对角线平行的由一系列点组组成的斜线；而对于两条互为反向的序列，则在反对角线方向上有由点组成的斜线。这种反映序列比对的方法在直观地揭示多个相配的子串对时尤其有用，一直被使用到现在。</li>
+<li>DNA序列比对的替换计分矩阵：<br>  借鉴上面点矩阵的方法，可以为不同字符间的替换建立替换计分矩阵，它们或依据相应碱基或氨基酸的理化性质而确定，或依据突变实际发生的概率而确定，因此相当客观和固定。<ul>
+<li>等价矩阵：是最简单的一种替换计分矩阵，其中，相同核苷酸间的匹配得分为1，不同核苷酸间的替换得分为0。尽管含义清晰明了，由于不含有碱基的任何理化信息和不区别对待不同的替换，在实际的序列比对中较少使用。    </li>
+<li>转换-颠换矩阵：核酸的碱基按照环结构特征被划分为嘌呤（腺嘌呤A，鸟嘌呤G，它们有两个环）和嘧啶（胞嘧啶C，胸腺嘧啶T，它们只有一个环）。如果DNA碱基的替换保持环数不变，则称为转换，如A→G，C→T；如果环数发生变化，则称为颠换，如A→C，A→T等。在进化过程中，转换发生的频率远比颠换高，其中转换的得分为-1. 而颠换的得分为-5    </li>
+<li>BLAST矩阵：经过实际比对发现，如令被比对的两个核苷酸相同时得分为+5，反之得分为-4，则比对效果较好。这个矩阵广泛地被DNA序列比对所采用，称为BLAST矩阵。</li>
+</ul>
+</li>
+<li>蛋白质序列比对的替换计分矩阵：<br>  蛋白质序列可由20个氨基酸组成，它们具有不同的生物化学特性，这此特性会影响它们在进化过程中的相互替换性。例如，与体积差异大的氨基酸相比，体积相似的氨基酸更易于彼此并换。另外，与水的亲和性也影响相互替换的概率。再者，生物学家己观察到天冬酰胺（Asn），天冬氨酸（Asp）、谷氨酸（Glu）和丝氨酸（Ser）属于最容易突变的氨基酸，而半胱氨酸（Cys）和色氨酸（Trp）则属于最不易突变的氨基酸。因此，在比较蛋白质序列时，简单的计分系统（例如+1表示匹配，0表示失配，-1表示空格）是不够的，必须使用一个能够充分反映氨基酸的相互替换性的计分系统。下面介绍多个不同的氨基酸替换计分矩阵。<ul>
+<li>等价矩阵；</li>
+<li>遗传密码矩阵；</li>
+<li>疏水性矩阵；</li>
+<li>PAM矩阵；</li>
+<li>BLOSUM矩阵；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>双序列全局比对：对于两条序列的比对问题，人们提出了很多算法。其中基于动态规划的算法是目前最基本的算法。</li>
+<li>双序列局部比对：</li>
+<li>多序列全局比对：主要涉及四个要素：① 选择一组能进行比对的序列（要求是同源序列）；② 选择一个实现比对与计分的算法与软件；③ 确定软件的参数；④ 合理地解释比对的结果。</li>
+<li>多序列局部比对：</li>
+<li>比对的显著统计性：<h3 id="2-英文及缩写-1"><a href="#2-英文及缩写-1" class="headerlink" title="2. 英文及缩写"></a>2. 英文及缩写</h3></li>
+<li>计分矩阵：<strong>substitution matrix</strong>；</li>
+<li>等价矩阵：<strong>unitary matrix</strong>；</li>
+<li>转换-颠换矩阵：<strong>transition-transversion matrix</strong>；</li>
+<li>转换：<strong>transition</strong>；</li>
+<li>颠换：<strong>transversion</strong>；</li>
+<li>遗传密码矩阵：<strong>genetic code matrix，GCM</strong>；</li>
+<li>疏水性矩阵：<strong>hydrophobic matrix</strong>；</li>
+<li>PAM矩阵：可接受点突变<strong>point accepted mutation</strong>，或可接受突变百分比<strong>percent of accepted mutation</strong>； </li>
+<li>BLOSUM矩阵：<strong>BLOck SUbstitution Matrix</strong>；</li>
+<li>动态规划：<strong>dynamic programming</strong>；</li>
+<li>渐进多序列比对：<strong>progressive multiple alignment</strong>；</li>
+<li>指导树：<strong>guide tree</strong>；</li>
+<li>离异度：<strong>divergence</strong>；</li>
+<li>空缺：<strong>gap</strong>；</li>
+<li>引入空缺：<strong>gap open</strong>；</li>
+<li>扩展空缺：<strong>gap extend</strong>；</li>
+<li>分层聚类法：<strong>hierarchical clustering</strong>；</li>
+</ol>
+<h2 id="第三节-数据库检索"><a href="#第三节-数据库检索" class="headerlink" title="第三节 数据库检索"></a>第三节 数据库检索</h2><h3 id="1-名词-2"><a href="#1-名词-2" class="headerlink" title="1. 名词"></a>1. 名词</h3><ol>
+<li>经典BLAST：是目前最常用的数据库搜索程序。<br> 它的要点是片段对的概念，它是指两个给定序列中的一对子序列，它们的长度相等，且可以形成无空格的完全匹配。<br> BLAST首先找出查询序列和目标序列间所有匹配程度（以得分计）超过一定阈值的片段对，然后对片段对根据给定的相似性阈值进行延伸，得到一定长度的相似性片段，最后给出高分值片段对。<br> BLAST在线服务实际上包含一组程序，不仅可用于直接对蛋白质序列数据库和核酸序列数据库进行搜索，而且可以将查询序列翻译成蛋自质后再进行搜索，以提高搜索结果的灵敏度。<ul>
+<li>BLAS下的应用：BLAST具有非常厂泛的应用：<br>(1)确定一个蛋白质或核酸序列有哪些垂直同源或水平同源序列。<br>(2)确定哪些蛋白质或基因在特定的物种中出现。<br>(3)发现新基因。<br>(4)确定一个基因或蛋自质的变种。<br>(5)寻找对于一个蛋白质的功能或结构起关键作用的片段。</li>
+<li>搜索步骤：<br>(1)选择感兴趣的序列，可以是FASTA格式的序列，也可以是访问编号。<br>(2)选择BLAST程序，包括blastp，blastn，blastx，tblastn，tblastx。<br>(3)选择数据库。<br>(4)选择参数。</li>
+<li>常用的输入与输出参数：<br>(1) -p ProgramName：p代表program，可带的选项是blastp，blastn，blastx，tblastn和tblastx。<br>(2) -i QueryFile：用于指定包含查询序列的查询文件。<br>(3) -d DatabaseName：选择待搜索的数据库，可以选择多个数据库。<br>(4) -o OutputFileName：数据库搜索输出文件的名称，默认的计算机屏幕。<br>(5) -e ExpectedValue：E期望值，这一参数控制搜索的敏感性。<br>(6) -m SpecifiesAlignmentView：设定搜索结果的显示格式，选项有12个，其中0是默认参数，显示查询序列和目标序列两两比对的信息。<br>(7) -F FiIterQuerySequence：屏蔽简单重复和低复杂度序列的参数，有T（选上）和F（不选）两个选项。<br>(8) -E CostToExtendGap：给出空位延伸罚分。<br>BLAST程序的参数有搜索参数，包括字长（word size）、期望值E、空格罚分、替换计分矩阵、阈值、窗口尺寸（window size）等，以及统计学显著性参数，包括λ和K。</li>
+</ul>
+</li>
+<li>衍生BLAST<ul>
+<li>PSI-BLAST：即Position-Specific Iterated BLAST是一个专门化的搜索工具。</li>
+<li>PHI-BLAST：即Pattern-Hit Initiated BLAST。能用来帮助判断这个蛋白质属于哪个家族。</li>
+<li>BLASTZ：是在比对人和鼠的基因组中发展起来的，它适合于比对非常长的序列。</li>
+</ul>
+</li>
+<li>BLAT：</li>
+<li>RNA序列搜索：</li>
+<li>数据库搜索的统计显著性：</li>
+</ol>
+<h3 id="2-英文及缩写-2"><a href="#2-英文及缩写-2" class="headerlink" title="2. 英文及缩写"></a>2. 英文及缩写</h3><ol>
+<li>BLAST：<strong>Basic Local Alignment Search Tool</strong>；</li>
+<li>片段对：<strong>segment pair</strong>；</li>
+<li>高分值片段对：<strong>high-scoring pairs</strong>；</li>
+<li>位点特异性计分矩阵：<strong>position-specific scoring matrix, PSSM</strong>；</li>
+<li>BLAT：<strong>The BLAST-Like Alignment Tool</strong>；</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创，长期缺钱</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.jpg" alt="Dr.二哈 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/ali.jpg" alt="Dr.二哈 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/生信/" rel="tag"><i class="fa fa-tag"></i> 生信</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/18/生物信息学-李霞第二版-第一章/" rel="next" title="生物信息学-李霞第二版--第一章">
+                <i class="fa fa-chevron-left"></i> 生物信息学-李霞第二版--第一章
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/images/头像26.jpg"
+                alt="Dr.二哈" />
+            
+              <p class="site-author-name" itemprop="name">Dr.二哈</p>
+              <p class="site-description motion-element" itemprop="description">一个生信自学者的微博</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第二章-序列比对"><span class="nav-number">1.</span> <span class="nav-text">第二章 序列比对</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一节-引言"><span class="nav-number">1.1.</span> <span class="nav-text">第一节 引言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-名词"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. 名词</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-英文及缩写"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. 英文及缩写</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二节-比对算法概要"><span class="nav-number">1.2.</span> <span class="nav-text">第二节 比对算法概要</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-名词-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.名词</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-英文及缩写-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. 英文及缩写</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三节-数据库检索"><span class="nav-number">1.3.</span> <span class="nav-text">第三节 数据库检索</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-名词-2"><span class="nav-number">1.3.1.</span> <span class="nav-text">1. 名词</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-英文及缩写-2"><span class="nav-number">1.3.2.</span> <span class="nav-text">2. 英文及缩写</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dr.二哈</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">13.2k</span>
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_pv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
