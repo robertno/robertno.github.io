@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<meta name="baidu-site-verification" content="2EUxx8Kbj6" />
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="R,统计," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Bionew" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="第三章 概率与分布3.1 随机抽样123456789101112#在R中，如果想进行随机抽样，比如从1-40中随机抽取5个数字#sample函数中，第一个参数1:40表示被抽样的值向量#第二个参数5是抽样大小sample(1:40,5)#值得注意的是，sample函数默认是无放回抽样#如果想进行有放回抽样，需要加上参数replace=TRUE#有放回抽样适用于投硬币或掷骰子模型#比如模拟10次投硬">
+<meta name="keywords" content="R,统计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="R语言统计入门-第三章">
+<meta property="og:url" content="http://yoursite.com/2018/02/27/R语言统计入门-第三章/index.html">
+<meta property="og:site_name" content="Bionew">
+<meta property="og:description" content="第三章 概率与分布3.1 随机抽样123456789101112#在R中，如果想进行随机抽样，比如从1-40中随机抽取5个数字#sample函数中，第一个参数1:40表示被抽样的值向量#第二个参数5是抽样大小sample(1:40,5)#值得注意的是，sample函数默认是无放回抽样#如果想进行有放回抽样，需要加上参数replace=TRUE#有放回抽样适用于投硬币或掷骰子模型#比如模拟10次投硬">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-02-27T14:03:45.353Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="R语言统计入门-第三章">
+<meta name="twitter:description" content="第三章 概率与分布3.1 随机抽样123456789101112#在R中，如果想进行随机抽样，比如从1-40中随机抽取5个数字#sample函数中，第一个参数1:40表示被抽样的值向量#第二个参数5是抽样大小sample(1:40,5)#值得注意的是，sample函数默认是无放回抽样#如果想进行有放回抽样，需要加上参数replace=TRUE#有放回抽样适用于投硬币或掷骰子模型#比如模拟10次投硬">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/02/27/R语言统计入门-第三章/"/>
+
+
+
+
+
+  <title>R语言统计入门-第三章 | Bionew</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Bionew</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/27/R语言统计入门-第三章/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dr.二哈">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/images/头像26.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bionew">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">R语言统计入门-第三章</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-27T19:21:41+08:00">
+                2018-02-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/R/" itemprop="url" rel="index">
+                    <span itemprop="name">R</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/R/统计/" itemprop="url" rel="index">
+                    <span itemprop="name">统计</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,143
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="第三章-概率与分布"><a href="#第三章-概率与分布" class="headerlink" title="第三章 概率与分布"></a>第三章 概率与分布</h1><h2 id="3-1-随机抽样"><a href="#3-1-随机抽样" class="headerlink" title="3.1 随机抽样"></a>3.1 随机抽样</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#在R中，如果想进行随机抽样，比如从1-40中随机抽取5个数字</span><br><span class="line">#sample函数中，第一个参数1:40表示被抽样的值向量</span><br><span class="line">#第二个参数5是抽样大小</span><br><span class="line">sample(1:40,5)</span><br><span class="line">#值得注意的是，sample函数默认是无放回抽样</span><br><span class="line">#如果想进行有放回抽样，需要加上参数replace=TRUE</span><br><span class="line">#有放回抽样适用于投硬币或掷骰子模型</span><br><span class="line">#比如模拟10次投硬币</span><br><span class="line">sample(c(&quot;H&quot;,&quot;T&quot;),10,replace=T)</span><br><span class="line">#可以用prob参数来模拟那种结果具有不相等概率的数据</span><br><span class="line">#比如成功的几率是90%</span><br><span class="line">sample(c(&quot;succ&quot;,&quot;fail&quot;),10,replace=T,prob=c(0.9,0.1))</span><br></pre></td></tr></table></figure>
+<h2 id="3-2-概率计算与排列组合"><a href="#3-2-概率计算与排列组合" class="headerlink" title="3.2 概率计算与排列组合"></a>3.2 概率计算与排列组合</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#使用prod函数，进行连乘</span><br><span class="line">#比如36×37×38×39×40</span><br><span class="line">prod(40:36)</span><br><span class="line">#如果这是一种类似于乐透彩票的游戏，需要正确猜对5个数字</span><br><span class="line">#第一个数字有5种可能，第二个有4种可能，以此类推</span><br><span class="line">#那么赢奖的概率为</span><br><span class="line">prod(5:1)/prod(40:36)</span><br><span class="line">#计算从40个数字中选取5个的所有可能</span><br><span class="line">#可以用choose函数</span><br><span class="line">choose(40,5)</span><br><span class="line">#那么概率即为</span><br><span class="line">1/choose(40,5)</span><br></pre></td></tr></table></figure>
+<h2 id="3-3-离散分布"><a href="#3-3-离散分布" class="headerlink" title="3.3 离散分布"></a>3.3 离散分布</h2><p>​    当观察一个独立重复二项实验时，通常对每次实验的成功或失败并不感兴趣，更感兴趣的是成功或失败的总数。显然，这个总数是随机的，因为它依赖于每一次随机结果，因此被称为随机变量。</p>
+<p>​    它是一个可以取值0,1,2,3，……，n的离散值的随机变量。</p>
+<p>​    随机变量$$X$$具有概率分布，可以用点概率$$f(x)=P(X=x)$$或累计分布函数$$F(x)=P(X=x)$$描述。在上述二项分布情形下，分布可以用点概率来得到：<br>$$</p>
+<p>f(x)=(\begin{matrix}<br>n\<br>x\<br>\end{matrix})p^x(1-p)^{n-x}<br>$$</p>
+<p>​    其中<br>$$<br>(\begin{matrix}<br>n\<br>x\<br>\end{matrix})<br>$$<br>​    被称为二项系数。参数<em>P</em>是一次独立实验中成功地概率。</p>
+<h2 id="3-4-连续分布"><a href="#3-4-连续分布" class="headerlink" title="3.4 连续分布"></a>3.4 连续分布</h2><p>​    有些数据来自于对实质连续尺度的测量，比如温度什么的。这种测量通常包含随机变化的因素，这使得测量很难被完全重复。然而，这种随机波动会遵循某种模式：它会集中在某个中心值附近，大的偏差比小的要少得多。</p>
+<p>​    为了连续数据建模，需要定义能包含任意实数值的随机变量。因为有无穷的数字无限接近，任何特定值的概率是0，所以这里没有像离散型随机变量那样的点概率的说法，取而代之的是<strong>密度</strong>的概念。</p>
+<p>​    它是指<em>x</em>的一个小邻域的无穷小概率除以区域的大小。累计分布函数的定义如前，并且有下面的关系：<br>$$<br>F(x)=\int_{-\infty}^\infty{f(x)dx}<br>$$<br>​    在统计理论中有许多常见的分布，可以在R中使用。先看下面几个例子。</p>
+<p>​    均匀分布是在一个特定的区间（默认是[0,1]）上有常数密度。</p>
+<p>​    正态分布（也成为高斯分布）具有密度：<br>$$<br>f(x)=\frac{1}{\sqrt}exp(-\frac{(x-\mu)^2}{2\sigma^2})<br>$$<br>​    依赖于均值$$\mu$$和标准差$$\sigma$$。正态分布具有标志性的钟形曲线。</p>
+<h2 id="3-5-R中的内置分布"><a href="#3-5-R中的内置分布" class="headerlink" title="3.5 R中的内置分布"></a>3.5 R中的内置分布</h2><p>​    与建模和统计检验有关的常用标准分布都已经嵌入到R中，因此可以完全取代传统的统计表格。下面只看一下正态分布和二项分布。</p>
+<p>​    对一个统计分布可以计算4项基本内容：</p>
+<ol>
+<li><p>密度或点概率；</p>
+</li>
+<li><p>累计概率分布函数</p>
+</li>
+<li><p>分位数</p>
+</li>
+<li><p>伪随机数</p>
+</li>
+</ol>
+<p>​    对R中所有的分布，关于上面列出的4项都对应一个相应的函数，比如对于正态分布，它们分别为dnorm，pnorm，qnorm和rnorm（分别对应密度，概率、分位数和随机数）。</p>
+<h3 id="3-5-1-密度"><a href="#3-5-1-密度" class="headerlink" title="3.5.1 密度"></a>3.5.1 密度</h3><p>​    连续分布的密度是“得到一个接近<em>x</em>的值”的相对可能性的度量。在一个特定区间得到一个值得概率是在相应曲线下的面积。    </p>
+<p>​    离散分布，密度用于点概率——恰好得到<em>x</em>值得概率。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#对于密度函数，可以如下进行</span><br><span class="line">#函数seq用于产生等距数值，这里是从-4到4，步长为0.1</span><br><span class="line">#type=“l“参数可以使函数在点与点之间划线而不是只画出点。</span><br><span class="line">x &lt;- seq(-4,4,0.1)</span><br><span class="line">plot(x,dnorm(x),type=&quot;l&quot;)</span><br><span class="line">#创建图形的另外一种方法是用curve</span><br><span class="line">curve(dnorm(x), from=-4, to=4)</span><br><span class="line">#对于离散分布，变量只能取明确值，更倾向于画针形图</span><br><span class="line">#下面是n=50，p=0.33的二项分布图，type=“h”指定画出针形图</span><br><span class="line">x &lt;- 0:50</span><br><span class="line">plot(x, dbinom(x,size=50, prob=.33),type=&quot;h&quot;)</span><br></pre></td></tr></table></figure>
+<h3 id="3-5-2-累计分布函数"><a href="#3-5-2-累计分布函数" class="headerlink" title="3.5.2 累计分布函数"></a>3.5.2 累计分布函数</h3><p>​    累计分布函数描述的是对一个给定分布小于或等于x的分布的概率。相应R函数按惯例以“p”开头。</p>
+<p>​    比如，一种生化指标可以用均值132，标准差13的正态分布描述，而某个患者的该指标为160，则：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1-pnorm(160,mean=132,sd=13)</span><br></pre></td></tr></table></figure>
+<p>​    另一个典型应用与统计检验有关。考虑简单的符号检验：</p>
+<p>​    20个病人每人进行2中治疗（以随机顺序治疗），问治疗A还是治疗B更好。结果表明16人认为A好。问题是这是否能作为A确实更好的充分证据，还是说这个结果也可能只是偶然发生的，即使两种治疗效果同样好。如果两种治疗没有差别，可以认为喜欢A的人数服从n=20，<em>p</em>=0.5的二项分布。那么所观测到的结果有多少种可能呢，如同在正态分布下，需要一个尾部概率。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pbinom(16,size=20,prob=.5)</span><br></pre></td></tr></table></figure>
+<p>​    然后用1减去它得到上尾概率，但这是不对的。我们需要的是观测到的或更极端的概率，pbinom给出了16或更少数量的概率。此处用“15或更少”来代替：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1-pbinom(15,size=20,prob=.5)</span><br></pre></td></tr></table></figure>
+<p>​    如果因为没有关于哪种治疗方法更好的假设，而希望进行双侧检验，那么必须加上得到在另一侧同样极端结果的概率。这意味着4个或更少的人喜欢A的概率。下面给出总的概率：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1-pbinom(15,20,.5)+pbinom(4,20,.5)</span><br></pre></td></tr></table></figure>
+<h3 id="3-5-3-分位数"><a href="#3-5-3-分位数" class="headerlink" title="3.5.3 分位数"></a>3.5.3 分位数</h3><p>​    分位数函数是累计分布函数的反函数。具有这样的性质：得到小于等于它的概率为<em>p</em>。根据定义，中位数即50%分位数。</p>
+<p>​    理论分位数通常用于置信区间的计算，以及与设计试验有关的势函数的计算。下面给出一个置信区间计算的简单例子。</p>
+<p>​    如果有来自具有共同均值μ和标准差σ的正态分布的n个观测，均值$$ \overline{X}$$服从均值为$$\mu$$、标准差为$$\sigma/\sqrt{n}$$的正态分布，$$\mu$$的95%置信区间为：<br>$$<br>\overline{x}+\sigma/\sqrt{n}\times N<em>{0.025}\leq\mu\leq\overline{x}+\sigma/\sqrt{n}\times N</em>{0.025}<br>$$<br>​    其中$$N_{0.025}$$是正态分布的2.5%分位数。如果$$\sigma=12$$，观测了$$n=5$$个人，得到均值$$\overline{x}=83$$，那么可以计算相关分位数如下：（sem表示standard error of the mean）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">xbar &lt;- 83</span><br><span class="line">sigma &lt;- 12</span><br><span class="line">n &lt;- 5</span><br><span class="line">sem &lt;- sigma/sqrt(n)</span><br><span class="line">sem</span><br><span class="line">xbar + sem + qnorm(0.025)</span><br><span class="line">xbar + sem + qnorm(0.975)</span><br></pre></td></tr></table></figure>
+<p>​    因此得到了一个$$\mu$$的置信度为95%的置信区间，从72.48到93.52。</p>
+<p>​    由于正态分布是对称的，所以有$$N<em>{0.025}=-N</em>{0.975}$$，通常把置信区间公式写成$$\overline{x}\pm\sigma/\sqrt{n}\times N_{0.975}$$。这个分位数通常被记为$$\Phi^{-1}(0.975)$$。此处$$\Phi$$是标准正态分布（pnorm）函数的标准符号。</p>
+<h3 id="3-5-4-随机数字"><a href="#3-5-4-随机数字" class="headerlink" title="3.5.4 随机数字"></a>3.5.4 随机数字</h3><p>​    使用随机数产生函数非常简单。第一个参数指定用于计算的随机数的数量，后续参数类似于其他与相同分布有关的函数中相应位置的参数，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rnorm(10)</span><br><span class="line">rnorm(10)</span><br><span class="line">rnorm(10,mean=7,sd=5)</span><br><span class="line">rnorm(10,size=20,prob=.5)</span><br></pre></td></tr></table></figure>
+<p>​    </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创，长期缺钱</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.jpg" alt="Dr.二哈 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/ali.jpg" alt="Dr.二哈 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/R/" rel="tag"><i class="fa fa-tag"></i> R</a>
+          
+            <a href="/tags/统计/" rel="tag"><i class="fa fa-tag"></i> 统计</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/20/生物信息学-李霞第二版-第二章/" rel="next" title="生物信息学-李霞第二版-第二章">
+                <i class="fa fa-chevron-left"></i> 生物信息学-李霞第二版-第二章
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/images/头像26.jpg"
+                alt="Dr.二哈" />
+            
+              <p class="site-author-name" itemprop="name">Dr.二哈</p>
+              <p class="site-description motion-element" itemprop="description">一个生信自学者的微博</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第三章-概率与分布"><span class="nav-number">1.</span> <span class="nav-text">第三章 概率与分布</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-随机抽样"><span class="nav-number">1.1.</span> <span class="nav-text">3.1 随机抽样</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-概率计算与排列组合"><span class="nav-number">1.2.</span> <span class="nav-text">3.2 概率计算与排列组合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-离散分布"><span class="nav-number">1.3.</span> <span class="nav-text">3.3 离散分布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-连续分布"><span class="nav-number">1.4.</span> <span class="nav-text">3.4 连续分布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-R中的内置分布"><span class="nav-number">1.5.</span> <span class="nav-text">3.5 R中的内置分布</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-1-密度"><span class="nav-number">1.5.1.</span> <span class="nav-text">3.5.1 密度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-2-累计分布函数"><span class="nav-number">1.5.2.</span> <span class="nav-text">3.5.2 累计分布函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-3-分位数"><span class="nav-number">1.5.3.</span> <span class="nav-text">3.5.3 分位数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-4-随机数字"><span class="nav-number">1.5.4.</span> <span class="nav-text">3.5.4 随机数字</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dr.二哈</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">15.3k</span>
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_pv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
